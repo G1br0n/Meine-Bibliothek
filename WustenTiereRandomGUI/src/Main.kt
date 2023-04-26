@@ -7,4 +7,5 @@ fun main() {
     frame.setLocationRelativeTo(null)
     frame.add(Panel())
     frame.isVisible = true
+
 }
