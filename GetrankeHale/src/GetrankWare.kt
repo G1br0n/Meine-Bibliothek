@@ -1,6 +1,6 @@
 import java.io.File
 
-class GetrankWare {
+open class GetrankWare {
     //--------------------------------Variable--------------------------------------------------------------
     // Erstelle leere Listen für den gesamten Inhalt der Textdatei
     val getrankListe = mutableListOf<String>()
@@ -14,7 +14,7 @@ class GetrankWare {
 
     var indexReturn: Int = 0
 
-    //-----------------------------Initialization--------------------------------------------------------------
+    //-----------------------------Initialization-----------------------------------------------------------------------
     init {
         // Definiere den Pfad zur Getränkedatei und speichere sie als File in getrankeFile
         val getrankeFile: File = File("GetrankeHale/src/producte/getranke")
@@ -42,7 +42,7 @@ class GetrankWare {
         }
     }
 
-    //----------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------
     // Methode druckt die gesamte Getränkeliste aus
     fun druckeGetrankWareListeAus() {
         for (i in idListe.indices) {
@@ -53,7 +53,7 @@ class GetrankWare {
         }
     }
 
-    //------------------------------------Methoden mit MutableList-Return-------------------------------------------------
+    //----------------------------------------Methoden mit Return-------------------------------------------------------
     fun gibGetrankListeZuruck(): MutableList<String> {
         return getrankListe
     }   // Gibt die Getränkeliste zurück
@@ -78,7 +78,9 @@ class GetrankWare {
         return bestandListe
     }   // Gibt die Bestandsliste zurück
 
-    //---------------------------------Suchen und Drucken Methoden----------------------------------------------------------
+
+
+    //---------------------------------Suchen und Drucken Methoden------------------------------------------------------
     // Suche mit readln() nach dem Namen eines Produkts und gebe diese Information mit Hilfe des Listen-Index aus
     fun sucheMitNameUndDruckeProduktAus() {
         println("Bitte geben Sie den Produktnamen ein")
@@ -141,9 +143,9 @@ class GetrankWare {
         }
     }
 
-    //---------------------------------Methoden für Kaufen-------------------------------------------------------------------
-    fun kaufen(): Pair<Int,Int> {
-        var id = -1
+    //---------------------------------Methoden für Kaufen--------------------------------------------------------------
+    fun kaufen(): Pair<Int, Int> {
+        var id = 0
         var menge = 0
 
         // Eingabe der ID oder des Namens des Getränks
@@ -152,7 +154,7 @@ class GetrankWare {
 
         // Überprüfe, ob die Eingabe eine Zahl oder ein Text ist
         try {
-            if (eingabe?.toIntOrNull() != null) {
+            if (eingabe?.toIntOrNull() != null) {  // wenn eingabe 1324 dan mach weiter mit 1234 wen eingabe 123H dann mach weiter mit null
                 id = eingabe.toInt()
                 // Überprüfe, ob das Getränk mit der angegebenen ID in der Liste vorhanden ist
                 if (!idListe.contains(id)) {
@@ -205,55 +207,10 @@ class GetrankWare {
             // Gebe eine erfolgreiche Meldung aus
             println("$menge ${nameListe[index]} wurden erfolgreich gekauft.")
 
-
         } catch (ex: Exception) {
             println("Die Eingabe muss eine Zahl sein.")
             kaufen()
         }
         return Pair(this.indexReturn, menge)
-
-    }
-
-    private fun produktNochmalKaufeJaOderNein() {
-        var weiterKaufen = true
-        val warenkorb = mutableListOf<String>()
-        val preisListe = mutableListOf<Double>()
-
-        val getrankWare = GetrankWare()
-
-        while (weiterKaufen) {
-
-            val gekaufterIndex = getrankWare.kaufen()
-
-            // Füge das gekaufte Produkt zum Warenkorb hinzu
-            warenkorb.add(getrankWare.gibNameListeZuruck()[gekaufterIndex.first])
-            preisListe.add(getrankWare.gibPreisListeZuruck()[gekaufterIndex.first])
-
-            // Frage den Benutzer, ob er weitere Produkte kaufen möchte
-            println("Möchten Sie weitere Produkte kaufen? Ja/Nein")
-            val antwort = readLine()!!.lowercase()
-
-            if (antwort == "ja") {
-                weiterKaufen = true
-            } else if (antwort == "nein") {
-                weiterKaufen = false
-            } else {
-                println("Ungültige Eingabe. Bitte antworten Sie mit 'Ja' oder 'Nein'.")
-            }
-        }
-
-        // Berechne die Gesamtrechnung
-        var gesamtPreis = 0.0
-        for (preis in preisListe) {
-            gesamtPreis += preis
-        }
-
-
-        // Gebe den Warenkorb und die Gesamtrechnung aus
-        println("Ihr Warenkorb:")
-        for (produkt in warenkorb) {
-            println(produkt)
-        }
-        println("Gesamtpreis: $gesamtPreis €")
     }
 }
