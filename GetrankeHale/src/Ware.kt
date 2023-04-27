@@ -4,7 +4,6 @@ open class Ware {
     var price: Double = 0.0
     var bestand: Int = 0
 
-
     constructor(id: Int, name: String, price: Double, bestand: Int) {
         this.name = name
         this.price = price

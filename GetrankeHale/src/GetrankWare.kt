@@ -248,6 +248,7 @@ class GetrankWare {
             gesamtPreis += preis
         }
 
+
         // Gebe den Warenkorb und die Gesamtrechnung aus
         println("Ihr Warenkorb:")
         for (produkt in warenkorb) {

@@ -7,6 +7,7 @@ fun main() {
     val getrankWare = GetrankWare()
 
     do {
+
         //TODO: getrankWare.druckeGetrankWareListeAus()
         val gekaufterIndex = getrankWare.kaufen()
 
