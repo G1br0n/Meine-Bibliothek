@@ -142,7 +142,7 @@ class GetrankWare {
     }
 
     //---------------------------------Methoden für Kaufen-------------------------------------------------------------------
-    fun kaufen(): Int {
+    fun kaufen(): Pair<Int,Int> {
         var id = -1
         var menge = 0
 
@@ -210,7 +210,7 @@ class GetrankWare {
             println("Die Eingabe muss eine Zahl sein.")
             kaufen()
         }
-        return this.indexReturn
+        return Pair(this.indexReturn, menge)
 
     }
 
@@ -226,8 +226,8 @@ class GetrankWare {
             val gekaufterIndex = getrankWare.kaufen()
 
             // Füge das gekaufte Produkt zum Warenkorb hinzu
-            warenkorb.add(getrankWare.gibNameListeZuruck()[gekaufterIndex])
-            preisListe.add(getrankWare.gibPreisListeZuruck()[gekaufterIndex])
+            warenkorb.add(getrankWare.gibNameListeZuruck()[gekaufterIndex.first])
+            preisListe.add(getrankWare.gibPreisListeZuruck()[gekaufterIndex.first])
 
             // Frage den Benutzer, ob er weitere Produkte kaufen möchte
             println("Möchten Sie weitere Produkte kaufen? Ja/Nein")
